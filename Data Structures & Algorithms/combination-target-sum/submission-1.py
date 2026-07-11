@@ -1,0 +1,17 @@
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        coms = []
+        def backtrack(start, path):
+            if sum(path) == target:
+                coms.append(path[:])
+                
+            for i in range(start, len(nums)):
+                if sum(path) > target:
+                    continue
+                path.append(nums[i])
+                backtrack(i, path)
+                path.pop()
+        
+        backtrack(0,[])
+        return coms
+        
